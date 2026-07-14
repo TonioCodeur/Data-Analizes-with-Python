@@ -158,7 +158,13 @@ pd.Series(["Y", "N", "Y", "Y"]).mode()      # Series -> ['Y']
 pd.Series(["Y", "N", "Y", "Y"]).mode()[0]   # 'Y'
 ```
 
-> ⚠️ **Attention — divergence dans le script actuel** : la ligne utilise `df['OWN_OCCUPIED'].sum()[0]` et **non** `.mode()[0]`. Sur une colonne texte, `.sum()` **concatène** toutes les chaînes (`'Y'+'N'+'N'+…` → `'YNN12YYYY'`) et `[0]` renvoie le **premier caractère** (`'Y'`). Le résultat vaut `'Y'` **par coïncidence**, mais ce n'est pas le calcul du mode annoncé par le commentaire. Pour imputer une colonne catégorielle par sa valeur la plus fréquente, il faut bien `.mode()[0]`.
+> ⚠️ **Piège à connaître** : ne pas confondre `.mode()[0]` (valeur la plus fréquente) avec `.sum()[0]`. Sur une colonne texte, `.sum()` **concatène** toutes les chaînes (`'Y'+'N'+'N'+…` → `'YNN12YYYY'`) et `[0]` renverrait juste le **premier caractère** — ce n'est pas le mode. Pour imputer une colonne catégorielle, c'est bien `.mode()[0]` qu'il faut.
+
+> **Note — ligne redondante** : le script réimpute ensuite `SQ_FT` séparément :
+> ```python
+> df['SQ_FT'] = df['SQ_FT'].replace(np.nan, df['SQ_FT'].mean())
+> ```
+> Cette ligne est **sans effet** : `SQ_FT` fait déjà partie de `NUMERIC_COLUMNS` et a donc déjà été rempli par la boucle juste au-dessus. À ce stade la colonne n'a plus aucun NaN, donc `replace` ne trouve rien à remplacer. On peut la supprimer sans rien changer au résultat.
 
 ---
 

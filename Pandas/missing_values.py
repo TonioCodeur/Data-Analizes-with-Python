@@ -42,7 +42,7 @@ df_avec_na = df.copy()
 # valeur la plus fréquente (le mode), une moyenne n'ayant pas de sens sur du texte.
 for col in NUMERIC_COLUMNS:
     df[col] = df[col].replace(np.nan, df[col].mean())
-df['OWN_OCCUPIED'] = df['OWN_OCCUPIED'].replace(np.nan, df['OWN_OCCUPIED'].sum()[0])
+df['OWN_OCCUPIED'] = df['OWN_OCCUPIED'].replace(np.nan, df['OWN_OCCUPIED'].mode()[0])
 
 print("\n--- Exemple 1 : valeurs manquantes remplacees par la moyenne (.replace) ---")
 print(df)
