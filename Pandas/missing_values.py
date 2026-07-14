@@ -43,7 +43,6 @@ df_avec_na = df.copy()
 for col in NUMERIC_COLUMNS:
     df[col] = df[col].replace(np.nan, df[col].mean())
 df['OWN_OCCUPIED'] = df['OWN_OCCUPIED'].replace(np.nan, df['OWN_OCCUPIED'].mode()[0])
-df['SQ_FT'] = df['SQ_FT'].replace(np.nan, df['SQ_FT'].mean())
 
 print("\n--- Exemple 1 : valeurs manquantes remplacees par la moyenne (.replace) ---")
 print(df)

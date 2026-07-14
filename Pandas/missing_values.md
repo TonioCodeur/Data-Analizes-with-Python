@@ -160,11 +160,7 @@ pd.Series(["Y", "N", "Y", "Y"]).mode()[0]   # 'Y'
 
 > ⚠️ **Piège à connaître** : ne pas confondre `.mode()[0]` (valeur la plus fréquente) avec `.sum()[0]`. Sur une colonne texte, `.sum()` **concatène** toutes les chaînes (`'Y'+'N'+'N'+…` → `'YNN12YYYY'`) et `[0]` renverrait juste le **premier caractère** — ce n'est pas le mode. Pour imputer une colonne catégorielle, c'est bien `.mode()[0]` qu'il faut.
 
-> **Note — ligne redondante** : le script réimpute ensuite `SQ_FT` séparément :
-> ```python
-> df['SQ_FT'] = df['SQ_FT'].replace(np.nan, df['SQ_FT'].mean())
-> ```
-> Cette ligne est **sans effet** : `SQ_FT` fait déjà partie de `NUMERIC_COLUMNS` et a donc déjà été rempli par la boucle juste au-dessus. À ce stade la colonne n'a plus aucun NaN, donc `replace` ne trouve rien à remplacer. On peut la supprimer sans rien changer au résultat.
+> **À noter — ne pas réimputer une colonne déjà traitée** : inutile de rajouter une ligne du type `df['SQ_FT'] = df['SQ_FT'].replace(np.nan, df['SQ_FT'].mean())`. `SQ_FT` fait déjà partie de `NUMERIC_COLUMNS`, donc la boucle ci-dessus l'a déjà remplie : à ce stade la colonne n'a plus aucun NaN et `replace` ne trouverait rien à substituer. La boucle sur `NUMERIC_COLUMNS` suffit pour toutes les colonnes numériques.
 
 ---
 
