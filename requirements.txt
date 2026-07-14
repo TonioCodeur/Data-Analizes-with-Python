@@ -1,0 +1,14 @@
+# Dépendances du projet « Data analyse » (formation IBM Data Science)
+# Installation : python -m pip install -r requirements.txt
+
+# Calcul numérique — utilisé partout (NumPy/, perf.py, scripts pandas)
+numpy>=2.0
+
+# Analyse de données — Pandas/, lab_data_importation/, premieres_analyses_avec_pandas/
+pandas>=2.2
+
+# Traitement d'images / graphiques — NumPy/iteration*.py
+matplotlib>=3.9
+
+# Fournit l'image d'exemple flower.jpg (load_sample_image) — NumPy/iteration*.py
+scikit-learn>=1.5

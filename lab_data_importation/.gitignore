@@ -1,0 +1,15 @@
+# Environnement virtuel Python
+.venv/
+venv/
+
+# Caches Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Artefacts de donnees telechargees par les scripts
+auto.csv
+
+# Fichiers VS Code locaux (optionnel : on garde settings.json partage)
+.vscode/*
+!.vscode/settings.json
